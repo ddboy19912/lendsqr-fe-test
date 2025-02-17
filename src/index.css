@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-@import "./styles/index.scss";
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
+@custom-variant dark (&:is(.dark *));
 
 @font-face {
   font-family: "AvenirNext";
@@ -27,8 +28,31 @@
   --font-roboto: "Roboto", sans-serif;
   --font-work-sans: "Work Sans", serif;
   --font-avenir-next: "AvenirNext", sans-serif;
+  --color-primary-bg: #ffffff;
+  --color-secondary-bg: #fefefe;
+  --color-primary-blue: #213f7d;
+  --color-teal: #39cdcc;
+  --color-secondary-font-color: #545f7d;
+  --color-primary-border: #545f7d26;
+  --color-placeholder-text-color: #545f7d99;
+  --breakpoint-xs: 390px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-chromebook: 1200px;
+  --breakpoint-3xl: 120rem;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 body {
   font-family: var(--font-roboto);
+}
+
+:root {
+  --radius: 0.6rem;
 }
