@@ -1,5 +1,8 @@
 import { User } from "@/types/User";
 import { faker } from "@faker-js/faker";
+import { initializeMockData } from "../seed";
+
+initializeMockData();
 
 export const users: User[] = Array.from({ length: 10 }, () => ({
   id: faker.string.alpha(11),
