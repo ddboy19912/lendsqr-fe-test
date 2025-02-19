@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "variables" as v;
+
 h1 {
   font-size: 40px;
   font-weight: 700;
@@ -19,9 +22,33 @@ h4 {
   text-transform: uppercase;
 }
 
+p {
+  line-height: 1.2;
+  font-size: 16px;
+}
+
+.small-text {
+  font-size: 12px;
+  line-height: 1.2;
+}
+
 .btn-text {
   font-weight: 600;
   font-size: 14px;
   line-height: 1.4;
   letter-spacing: 0.1em;
+}
+
+.link-text {
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  color: map.get(v.$colors, text-primary);
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: map.get(v.$colors, teal);
+  }
 }

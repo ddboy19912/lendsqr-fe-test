@@ -11,15 +11,15 @@ export default defineConfig({
     modules: {
       localsConvention: "camelCaseOnly",
     },
-    preprocessorOptions: {
-      scss: {
-        // additionalData: `@import "./src/styles/index.scss";`,
-      },
-    },
   },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  server: {
+    watch: {
+      usePolling: true, // Needed for some Docker/WSL setups
     },
   },
 });

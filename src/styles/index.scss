@@ -1,1 +1,33 @@
 @use "./base/typography";
+@use "./modules/sidebar";
+
+.sidebar-scrollable {
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar by default */
+.sidebar-scrollable::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* Show scrollbar on hover/active */
+.sidebar-scrollable:hover::-webkit-scrollbar,
+.sidebar-scrollable:active::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 150, 150, 0.5);
+}
+
+.sidebar-scrollable:hover {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(150, 150, 150, 0.3) transparent;
+}
