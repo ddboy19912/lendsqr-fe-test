@@ -1,6 +1,6 @@
 import { useAuthStore } from "../stores/authStore";
 
-export const DashboardPage = () => {
+const DashboardPage = () => {
   const logout = useAuthStore((state) => state.logout);
 
   return (
@@ -10,3 +10,5 @@ export const DashboardPage = () => {
     </div>
   );
 };
+
+export default DashboardPage;

@@ -31,6 +31,7 @@
   --color-primary-bg: #ffffff;
   --color-secondary-bg: #fefefe;
   --color-primary-blue: #213f7d;
+  --color-primary-blue-20: #213f7d33;
   --color-teal: #39cdcc;
   --color-secondary-font-color: #545f7d;
   --color-primary-border: #545f7d26;
@@ -40,6 +41,8 @@
   --breakpoint-md: 768px;
   --breakpoint-chromebook: 1200px;
   --breakpoint-3xl: 120rem;
+  --shadow-header: 3px 0px 20px rgba(0, 0, 0, 0.06);
+  --shadow-sidebar: 0px 5px 20px rgba(0, 0, 0, 0.06);
 }
 
 @theme inline {
@@ -51,6 +54,7 @@
 
 body {
   font-family: var(--font-roboto);
+  color: var(--color-primary-blue);
 }
 
 :root {

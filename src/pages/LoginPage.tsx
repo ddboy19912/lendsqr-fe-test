@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { loginSchema, type LoginFormValues } from "../schemas/authSchema";
 import { useAuthStore } from "../stores/authStore";
 
-export const LoginPage = () => {
+const LoginPage = () => {
   const login = useAuthStore((state) => state.login);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export const LoginPage = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/dashboard");
+      navigate("/admin");
     }
   }, [isAuthenticated, navigate]);
 
@@ -137,3 +137,5 @@ export const LoginPage = () => {
     </div>
   );
 };
+
+export default LoginPage;
