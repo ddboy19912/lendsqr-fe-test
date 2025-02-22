@@ -8,7 +8,6 @@ import { User } from "@/types/User";
 import React from "react";
 
 const GeneralDetails = ({ user }: { user: User }) => {
-  console.log(user);
   return (
     <div>
       <div className="flex flex-col">

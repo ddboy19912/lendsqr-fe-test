@@ -3,11 +3,11 @@ import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import { Button } from "@/components/ui/button";
 import { useUserDetails } from "@/hooks/useUsers";
+import { useUserStatus } from "@/hooks/useUserStatus";
 import { formatAmount } from "@/lib/helpers";
 import { TabValue } from "@/types/Tabs";
 import { lazy, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { toast } from "sonner";
 
 const NavigationTabs = lazy(() =>
   import("./UserDetailsTabs").then((module) => ({
@@ -23,8 +23,22 @@ const ContentTabs = lazy(() =>
 
 const UserDetailsPage = () => {
   const { userId } = useParams<{ userId: string }>();
-  const { data: user } = useUserDetails(userId ?? "");
+  const { data: user, refetch } = useUserDetails(userId ?? "");
   const [activeTab, setActiveTab] = useState<TabValue>("general details");
+  const { mutate } = useUserStatus();
+
+  const handleStatusChange = (status: "blacklisted" | "active") => {
+    if (!userId) return;
+
+    mutate(
+      { userId, status },
+      {
+        onSuccess: () => {
+          refetch();
+        },
+      }
+    );
+  };
 
   return (
     <div>
@@ -35,13 +49,13 @@ const UserDetailsPage = () => {
         <h2 className="text-primary-blue font-medium">Users</h2>
         <div className="flex gap-3 md:gap-5">
           <Button
-            onClick={() => toast(`Blacklist ${userId}`)}
+            onClick={() => handleStatusChange("blacklisted")}
             className="border-red text-red hover:bg-red cursor-pointer border bg-transparent px-4 py-[11.5px] text-xs font-semibold tracking-[0.1em] uppercase shadow-none transition-colors duration-200 hover:text-white md:text-sm"
           >
             Blacklist User
           </Button>
           <Button
-            onClick={() => toast(`Activate ${userId}`)}
+            onClick={() => handleStatusChange("active")}
             className="border-teal text-teal hover:bg-teal cursor-pointer border bg-transparent px-4 py-[11.5px] text-xs font-semibold tracking-[0.1em] uppercase shadow-none transition-colors duration-200 hover:text-white md:text-sm"
           >
             Activate User
@@ -61,7 +75,7 @@ const UserDetailsPage = () => {
                 />
               ) : (
                 <img
-                  loading="lazy"
+                  loading="eager"
                   className="size-[100px] rounded-full object-cover"
                   src={AvatarPlaceholder}
                   alt="avatar-placeholder"

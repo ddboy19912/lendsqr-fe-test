@@ -28,7 +28,6 @@
       }
 
       #pre-react-loader p {
-        font-family: "Work Sans", sans-serif;
         margin: 0;
         text-align: center;
       }
@@ -42,7 +41,15 @@
   <body>
     <div id="pre-react-loader">
       <img loading="eager" src="/loader.gif" alt="Loading..." />
-      <p>Booting up the Mock Server</p>
+      <p
+        style="
+          font-family:
+            Work Sans,
+            sans-serif;
+        "
+      >
+        Booting up the Mock Server
+      </p>
     </div>
 
     <div id="root"></div>

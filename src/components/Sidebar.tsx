@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
             <p>Switch Organization</p>
             <Icon icon="chevron-down" size={14} className="ml-[9px]" />
           </div>
-          <div className="mt-[52px] flex cursor-pointer items-center opacity-60">
+          <div className="mt-[52px] flex items-center opacity-60">
             <Icon className="mr-[10px]" icon="home" size={16} />
             <p>Dashboard</p>
           </div>

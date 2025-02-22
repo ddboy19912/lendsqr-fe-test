@@ -50,3 +50,5 @@ export interface User {
     savingsAmount: number;
   };
 }
+
+export type UserStatus = "active" | "inactive" | "blacklisted" | "pending";

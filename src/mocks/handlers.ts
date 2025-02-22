@@ -1,3 +1,4 @@
+import { UserStatus } from "@/types/User";
 import { http, HttpResponse, type HttpHandler } from "msw";
 import { users } from "./data/users";
 
@@ -52,4 +53,32 @@ export const handlers: HttpHandler[] = [
 
     return HttpResponse.json(results);
   }),
+
+  // Update user status
+  http.patch<{ userId: string }, { status: UserStatus }>(
+    "/api/users/:userId/status",
+    async ({ params, request }) => {
+      const { userId } = params;
+      const { status } = await request.json();
+
+      const userIndex = users.findIndex((u) => u.id === userId);
+
+      if (userIndex === -1) {
+        return HttpResponse.json(
+          { message: "User not found" },
+          { status: 404 }
+        );
+      }
+
+      users[userIndex].meta.status = status;
+
+      return HttpResponse.json(
+        {
+          success: true,
+          data: users[userIndex],
+        },
+        { status: 200 }
+      );
+    }
+  ),
 ];
