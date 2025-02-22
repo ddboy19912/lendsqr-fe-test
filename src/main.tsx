@@ -13,6 +13,10 @@ if (import.meta.env.MODE === "development") {
 
 const queryClient = new QueryClient();
 
+setTimeout(() => {
+  document.getElementById("pre-react-loader")!.style.display = "none";
+});
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>

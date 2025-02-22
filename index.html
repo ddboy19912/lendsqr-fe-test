@@ -8,40 +8,44 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
-      #loader {
+      #pre-react-loader {
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 50px;
-        height: 50px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        gap: 1rem;
+        z-index: 9999;
+        transition: opacity 0.3s ease-out;
+      }
+
+      #pre-react-loader img {
+        width: 150px;
+        height: 150px;
+        flex-shrink: 0;
+      }
+
+      #pre-react-loader p {
+        font-family: "Work Sans", sans-serif;
+        margin: 0;
+        text-align: center;
+      }
+
+      #root:has(> :not(#pre-react-loader)) #pre-react-loader {
+        opacity: 0;
+        pointer-events: none;
       }
     </style>
   </head>
   <body>
-    <div id="root">
-      <div id="loader">
-        <img
-          style="width: 150px; height: 150px"
-          src="/loader.gif"
-          alt="Loading..."
-        />
-        <p
-          style="
-            width: max-content;
-            font-family:
-              Work Sans,
-              sans-serif;
-          "
-        >
-          Booting up the Mock Server
-        </p>
-      </div>
+    <div id="pre-react-loader">
+      <img src="/loader.gif" alt="Loading..." />
+      <p>Booting up the Mock Server</p>
     </div>
+
+    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
