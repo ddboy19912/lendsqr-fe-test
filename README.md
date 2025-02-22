@@ -55,7 +55,13 @@ npm install
 npm run dev
 ```
 
-4. Open in browser:
+4. Run Tests:
+
+```bash
+npm test
+```
+
+5. Open in browser:
 
 ```bash
 http://localhost:5173
@@ -65,6 +71,9 @@ http://localhost:5173
 
 ```
 src/
+├── __tests__/                # Main test directory
+│   └──components/           # Component integration tests
+|
 ├── components/       # Reusable components
 │   ├── layout/       # Layout components
 │   └── ui/           # shadcn/ui components
