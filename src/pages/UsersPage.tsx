@@ -11,17 +11,34 @@ import DataTable from "@/components/DataTable";
 import Icon from "@/components/Icon";
 import { StatusBadge } from "@/components/StatusBadge";
 import { useAllUsers } from "@/hooks/useUsers";
+import { useUserStatus } from "@/hooks/useUserStatus";
 import { formatAmount, formatPhoneNumber } from "@/lib/helpers";
 import { User } from "@/types/User";
 import { type CellContext } from "@tanstack/react-table";
 import { format } from "date-fns";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "sonner";
 
 const UsersPage = () => {
-  const { data: allUsers, isLoading } = useAllUsers();
+  const { data: allUsers, isLoading, refetch } = useAllUsers();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    refetch();
+  });
+
+  const { mutate } = useUserStatus();
+
+  const handleStatusChange = (userId: string, currentStatus: string) => {
+    mutate(
+      { userId, status: currentStatus },
+      {
+        onSuccess: () => {
+          refetch();
+        },
+      }
+    );
+  };
 
   const userStats = useMemo(
     () => ({
@@ -173,7 +190,7 @@ const UsersPage = () => {
                   />
                 ),
                 label: "Blacklist user",
-                onClick: (row) => toast(`Blacklist user ${row.id}`),
+                onClick: (row) => handleStatusChange(row.id, "blacklisted"),
               },
               {
                 id: 3,
@@ -186,7 +203,7 @@ const UsersPage = () => {
                   />
                 ),
                 label: "Activate user",
-                onClick: (row) => toast(`Activate user ${row.id}`),
+                onClick: (row) => handleStatusChange(row.id, "active"),
               },
             ],
           }}

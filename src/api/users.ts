@@ -29,3 +29,19 @@ export const getAllUsers = async (filters?: {
   const res = await fetch(`/api/users?${params.toString()}`);
   return res.json();
 };
+
+export const updateUserStatus = async (userId: string, status: string) => {
+  const response = await fetch(`/api/users/${userId}/status`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ status }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to update status");
+  }
+
+  return response.json();
+};
