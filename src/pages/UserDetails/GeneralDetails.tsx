@@ -119,7 +119,7 @@ const GeneralDetails = ({ user }: { user: User }) => {
             <p className="small-text text-secondary-font-color uppercase">
               Office Email
             </p>
-            <p className="text-secondary-font-color mt-2 font-medium break-words capitalize">
+            <p className="text-secondary-font-color mt-2 font-medium break-words">
               {user.meta.email}
             </p>
           </div>
