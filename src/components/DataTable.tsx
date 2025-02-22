@@ -217,7 +217,7 @@ export default function DataTable<T extends { meta: { status: string } }>({
       <Card>
         {!isLoading ? (
           <div className="p-[30px] pb-0" ref={parentRef}>
-            <Table className="chromebook:w-full !w-[1000px]">
+            <Table className="chromebook:w-full w-[1000px]">
               <TableHeader className="bg-background sticky top-0 z-10">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <TableRow
@@ -408,38 +408,44 @@ export default function DataTable<T extends { meta: { status: string } }>({
                   );
                 })}
 
-                {/* Empty state */}
                 {rows.length === 0 && !isLoading && !error && (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                    <Icon
-                      icon="search-off"
-                      className="text-secondary-font-color"
-                      size={40}
-                    />
-                    <div className="text-center">
-                      <h3 className="text-secondary-font-color mb-2 text-lg font-semibold">
-                        {columnFilters.length > 0
-                          ? "No matching results"
-                          : "No data available"}
-                      </h3>
-                      <p className="text-secondary-font-color text-sm">
-                        {columnFilters.length > 0
-                          ? "Try adjusting your filters or search terms"
-                          : "Check back later or add new data"}
-                      </p>
-                    </div>
-                    {columnFilters.length > 0 && (
-                      <Button
-                        className="border-secondary-font-color text-secondary-font-color hover:bg-secondary-font-color cursor-pointer rounded-[8px] border bg-white px-[30.5px] py-[11.5px] text-sm font-semibold shadow-none transition-all duration-200 hover:text-white"
-                        onClick={() => {
-                          setPendingFilters([]);
-                          setColumnFilters([]);
-                        }}
-                      >
-                        Clear Filters
-                      </Button>
-                    )}
-                  </div>
+                  <TableRow>
+                    <TableCell
+                      colSpan={columns.length + (actions ? 1 : 0)}
+                      className="h-full"
+                    >
+                      <div className="flex h-full flex-col items-center justify-center gap-3">
+                        <Icon
+                          icon="search-off"
+                          className="text-secondary-font-color"
+                          size={40}
+                        />
+                        <div className="text-center">
+                          <h3 className="text-secondary-font-color mb-2 text-lg font-semibold">
+                            {columnFilters.length > 0
+                              ? "No matching results"
+                              : "No data available"}
+                          </h3>
+                          <p className="text-secondary-font-color text-sm">
+                            {columnFilters.length > 0
+                              ? "Try adjusting your filters or search terms"
+                              : "Check back later or add new data"}
+                          </p>
+                        </div>
+                        {columnFilters.length > 0 && (
+                          <Button
+                            className="border-secondary-font-color text-secondary-font-color hover:bg-secondary-font-color cursor-pointer rounded-[8px] border bg-white px-[30.5px] py-[11.5px] text-sm font-semibold shadow-none transition-all duration-200 hover:text-white"
+                            onClick={() => {
+                              setPendingFilters([]);
+                              setColumnFilters([]);
+                            }}
+                          >
+                            Clear Filters
+                          </Button>
+                        )}
+                      </div>
+                    </TableCell>
+                  </TableRow>
                 )}
               </TableBody>
             </Table>

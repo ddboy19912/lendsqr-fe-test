@@ -40,16 +40,14 @@ const UsersPage = () => {
       {
         header: "Organization",
         accessorKey: "organization",
-        size: 200,
-        minWidth: 150,
+        size: 180,
       },
       {
         id: "username",
         accessorFn: (row: User) =>
           `${row.personalInfo.firstName} ${row.personalInfo.lastName}`,
         header: "Username",
-        size: 180,
-        minWidth: 140,
+        size: 150,
         meta: { type: "text" },
         cell: ({ row }: CellContext<User, unknown>) => {
           const firstName = row.original.personalInfo.firstName;
@@ -62,23 +60,20 @@ const UsersPage = () => {
         header: "Email",
         accessorKey: "meta.email",
         meta: { type: "text" },
-        size: 220,
-        minWidth: 200,
+        size: 180,
         cell: ({ row }: CellContext<User, unknown>) => row.original.meta.email,
       },
       {
         header: "Phone Number",
         accessorKey: "meta.phone",
-        size: 200,
-        minWidth: 160,
+        size: 160,
         cell: ({ row }: CellContext<User, unknown>) =>
           formatPhoneNumber(row.original.meta.phone),
       },
       {
         header: "Date Joined",
         accessorKey: "meta.joined",
-        size: 180,
-        minWidth: 150,
+        size: 150,
         cell: ({ row }: CellContext<User, unknown>) =>
           format(new Date(row.original.meta.joined), "MMM dd, yyyy hh:mm a"),
         meta: { type: "date" },
