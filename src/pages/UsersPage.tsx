@@ -162,6 +162,7 @@ const UsersPage = () => {
                 id: 2,
                 icon: (
                   <img
+                    loading="lazy"
                     className="size-[14px] object-contain"
                     src={DeleteUserIcon}
                     alt="delete-user-icon"
@@ -174,6 +175,7 @@ const UsersPage = () => {
                 id: 3,
                 icon: (
                   <img
+                    loading="lazy"
                     className="size-[14px] object-contain"
                     src={UserIcon}
                     alt="user-icon"
@@ -208,6 +210,7 @@ const StatCard = ({
         <div className="h-10 w-10 animate-pulse rounded-full bg-gray-200" />
       ) : (
         <img
+          loading="lazy"
           className="size-10 overflow-hidden rounded-full"
           src={icon}
           alt={`${label} illustration`}
