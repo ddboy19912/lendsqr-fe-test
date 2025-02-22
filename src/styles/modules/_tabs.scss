@@ -1,4 +1,5 @@
 // Tabs Styles
+@use "../utilities/mixins" as *;
 
 button[data-slot="tabs-trigger"] {
   box-shadow: none;
@@ -11,9 +12,20 @@ button[data-slot="tabs-trigger"] {
   font-weight: 400;
   color: rgba(#000, 0.8);
   transition: all 0.3s ease-in-out;
+  @include mobile {
+    padding: 8px 15px;
+    font-size: 10px;
+  }
+
+  @include tablet {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
   &:hover {
     color: var(--color-teal);
   }
+
   &[data-state="active"] {
     border-color: var(--color-teal);
     color: var(--color-teal);

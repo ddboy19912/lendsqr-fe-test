@@ -1,6 +1,6 @@
 const LoadingSpinner = () => {
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
+    <div className="flex h-full w-full items-center justify-center">
       <img
         loading="eager"
         className="size-[150px]"
