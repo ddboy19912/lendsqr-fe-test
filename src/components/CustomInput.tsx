@@ -23,7 +23,7 @@ const CustomInput = ({
         value={value}
         placeholder={placeholderText}
       />
-      <div className="bg-teal flex h-full w-14 cursor-pointer items-center justify-center">
+      <div className="bg-teal flex h-full w-14 cursor-pointer items-center justify-center transition-all duration-200 hover:opacity-80">
         <Icon icon="search" size={14} />
       </div>
     </div>

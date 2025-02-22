@@ -13,9 +13,11 @@ const Navbar = () => {
     setSearchParam(e.target.value);
 
   return (
-    <header className="font-work-sans shadow-header fixed top-0 right-0 left-0 z-50 h-[100px] px-[30px]">
+    <header className="font-work-sans shadow-header fixed top-0 right-0 left-0 z-50 h-[100px] bg-white px-[30px]">
       <div className="mx-auto flex h-full items-center justify-between xl:max-w-[1350px]">
-        <img className="h-[30px]" src={Logo} alt="logo" />
+        <Link to="/">
+          <img className="h-[30px]" src={Logo} alt="logo" />
+        </Link>
         <div className="w-[400px]">
           <CustomInput
             inputType="search"

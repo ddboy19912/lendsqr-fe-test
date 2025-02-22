@@ -1,7 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { DashboardLayout } from "./components/layout/DashboardLayout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import { DashboardPage, LoginPage, UsersPage } from "./pages";
+import { LoginPage, UsersPage } from "./pages";
+import { UserDetailsPage } from "./pages/UserDetails";
 
 const App = () => {
   return (
@@ -18,12 +19,15 @@ const App = () => {
           }
         >
           <Route path="/admin">
-            <Route index element={<DashboardPage />} />
-            <Route path="users" element={<UsersPage />} />
+            <Route index element={<Navigate to="users" replace />} />
+            <Route path="users">
+              <Route index element={<UsersPage />} />
+              <Route path=":userId" element={<UserDetailsPage />} />
+            </Route>
           </Route>
         </Route>
 
-        <Route path="/" element={<Navigate to="/admin" replace />} />
+        <Route path="/" element={<Navigate to="/admin/users" replace />} />
         <Route path="*" element={<div>Oops Nothing to See here</div>} />
       </Routes>
     </div>

@@ -1,0 +1,21 @@
+// Tabs Styles
+
+button[data-slot="tabs-trigger"] {
+  box-shadow: none;
+  border-radius: 0px;
+  padding: 10px 25px;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1.1;
+  font-weight: 400;
+  color: rgba(#000, 0.8);
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    color: var(--color-teal);
+  }
+  &[data-state="active"] {
+    border-color: var(--color-teal);
+    color: var(--color-teal);
+  }
+}
