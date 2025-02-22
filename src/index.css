@@ -1,0 +1,74 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+  font-family: "AvenirNext";
+  src: url("/fonts/AvenirNext-Regular.otf") format("opentype");
+  font-display: swap;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "AvenirNext";
+  src: url("/fonts/AvenirNext-Demi.otf") format("opentype");
+  font-display: swap;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "AvenirNext";
+  src: url("/fonts/AvenirNext-Bold.otf") format("opentype");
+  font-display: swap;
+  font-weight: 700;
+}
+
+@theme {
+  /* Fonts */
+  --font-roboto: "Roboto", sans-serif;
+  --font-work-sans: "Work Sans", serif;
+  --font-avenir-next: "AvenirNext", sans-serif;
+
+  /* Colors */
+  --color-primary-bg: #ffffff;
+  --color-secondary-bg: #fefefe;
+  --color-tertiary-bg: #fbfbfb;
+  --color-primary-blue: #213f7d;
+  --color-primary-blue-20: #213f7d33;
+  --color-teal: #39cdcc;
+  --color-secondary-font-color: #545f7d;
+  --color-secondary-font-color-06: #545f7d0f;
+  --color-primary-border: #545f7d26;
+  --color-placeholder-text-color: #545f7d99;
+  --color-green: #39cd62;
+  --color-green-06: #39cd620f;
+  --color-red: #e4033b;
+  --color-red-10: #e4033b1a;
+  --color-yellow: #e9b200;
+  --color-yellow-10: #e9b2001a;
+
+  /* Breakpoints */
+  --breakpoint-xs: 390px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-chromebook: 1200px;
+  --breakpoint-3xl: 120rem;
+  --shadow-header: 3px 0px 20px rgba(0, 0, 0, 0.06);
+  --shadow-sidebar: 0px 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+body {
+  font-family: var(--font-work-sans);
+  color: var(--color-primary-blue);
+}
+
+:root {
+  --radius: 0.6rem;
+}
