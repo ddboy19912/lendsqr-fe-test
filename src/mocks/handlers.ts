@@ -13,11 +13,20 @@ export const handlers: HttpHandler[] = [
   }),
 
   // Get all users
-  http.get("/api/users", async () => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
+  http.get("/api/users", ({ request }) => {
+    const url = new URL(request.url);
+    const hasLoans = url.searchParams.has("hasLoans");
+    const hasSavings = url.searchParams.has("hasSavings");
+
+    const filteredUsers = users.filter((user) => {
+      const loanCondition = hasLoans ? user.meta.loanAmount > 0 : true;
+      const savingsCondition = hasSavings ? user.meta.savingsAmount > 0 : true;
+      return loanCondition && savingsCondition;
+    });
+
     return HttpResponse.json({
-      data: users,
-      total: users.length,
+      data: filteredUsers,
+      total: filteredUsers.length,
     });
   }),
 

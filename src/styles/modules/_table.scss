@@ -1,0 +1,23 @@
+// Table Styles
+
+table {
+  .active-status {
+    background-color: var(--color-green-06);
+    color: var(--color-green);
+  }
+
+  .blacklisted-status {
+    background-color: var(--color-red-10);
+    color: var(--color-red);
+  }
+
+  .pending-status {
+    background-color: var(--color-yellow-10);
+    color: var(--color-yellow);
+  }
+
+  .inactive-status {
+    background-color: var(--color-secondary-font-color-06);
+    color: var(--color-secondary-font-color);
+  }
+}

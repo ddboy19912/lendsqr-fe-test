@@ -4,7 +4,7 @@ import { initializeMockData } from "../seed";
 
 initializeMockData();
 
-export const users: User[] = Array.from({ length: 10 }, () => ({
+export const users: User[] = Array.from({ length: 23214 }, () => ({
   id: faker.string.alpha(11),
   organization: faker.company.name(),
   personalInfo: {
@@ -68,8 +68,17 @@ export const users: User[] = Array.from({ length: 10 }, () => ({
     email: faker.internet.email(),
     phone: faker.phone.number(),
     joined: faker.date.past({ years: 5 }).toISOString(),
-    status: faker.helpers.arrayElement(["active", "inactive", "blacklisted"]),
-    loanAmount: parseFloat(faker.finance.amount({ min: 5000, max: 50000 })),
-    savingsAmount: parseFloat(faker.finance.amount({ min: 1000, max: 100000 })),
+    status: faker.helpers.arrayElement([
+      "active",
+      "inactive",
+      "blacklisted",
+      "pending",
+    ]),
+    loanAmount:
+      faker.helpers.maybe(() => 0, { probability: 0.3 }) ??
+      parseFloat(faker.finance.amount({ min: 5000, max: 50000 })),
+    savingsAmount:
+      faker.helpers.maybe(() => 0, { probability: 0.3 }) ??
+      parseFloat(faker.finance.amount({ min: 1000, max: 100000 })),
   },
 }));

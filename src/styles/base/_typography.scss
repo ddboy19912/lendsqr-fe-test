@@ -1,11 +1,22 @@
 @use "sass:map";
-@use "variables" as v;
 
 h1 {
   font-size: 40px;
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: -0.04em;
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+h3 {
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: 0;
 }
 
 h4 {
@@ -46,9 +57,9 @@ p {
   text-decoration: underline;
   text-underline-offset: 2px;
   text-decoration-thickness: 1px;
-  color: map.get(v.$colors, text-primary);
+  color: var(--color-primary-blue);
   transition: all 0.3s ease-in-out;
   &:hover {
-    color: map.get(v.$colors, teal);
+    color: var(--color-teal);
   }
 }

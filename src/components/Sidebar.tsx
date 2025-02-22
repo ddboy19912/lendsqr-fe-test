@@ -4,7 +4,7 @@ import Icon from "./Icon";
 
 const Sidebar = () => {
   return (
-    <div className="shadow-sidebar font-work-sans fixed top-[100px] bottom-0 left-0 z-40 flex w-[283px] flex-col pt-[39px]">
+    <aside className="shadow-sidebar font-work-sans fixed top-[100px] bottom-0 left-0 z-40 flex w-[283px] flex-col pt-[39px]">
       <div className="flex flex-col px-[30px]">
         <div className="flex cursor-pointer items-center">
           <Icon className="mr-[10px]" icon="briefcase" size={16} />
@@ -40,7 +40,7 @@ const Sidebar = () => {
           ))}
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

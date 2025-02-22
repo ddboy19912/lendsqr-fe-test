@@ -5,8 +5,46 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lendsqr Admin</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+      #pre-react-loader {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        z-index: 9999;
+        transition: opacity 0.3s ease-out;
+      }
+
+      #pre-react-loader img {
+        width: 150px;
+        height: 150px;
+        flex-shrink: 0;
+      }
+
+      #pre-react-loader p {
+        font-family: "Work Sans", sans-serif;
+        margin: 0;
+        text-align: center;
+      }
+
+      #root:has(> :not(#pre-react-loader)) #pre-react-loader {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
   </head>
   <body>
+    <div id="pre-react-loader">
+      <img src="/loader.gif" alt="Loading..." />
+      <p>Booting up the Mock Server</p>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

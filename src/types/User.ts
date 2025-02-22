@@ -44,8 +44,8 @@ export interface User {
   meta: {
     email: string;
     phone: string;
-    joined: string; // ISO date
-    status: "active" | "inactive" | "blacklisted";
+    joined: string;
+    status: "active" | "inactive" | "blacklisted" | "pending";
     loanAmount: number;
     savingsAmount: number;
   };

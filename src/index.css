@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 @custom-variant dark (&:is(.dark *));
@@ -25,17 +24,30 @@
 }
 
 @theme {
+  /* Fonts */
   --font-roboto: "Roboto", sans-serif;
   --font-work-sans: "Work Sans", serif;
   --font-avenir-next: "AvenirNext", sans-serif;
+
+  /* Colors */
   --color-primary-bg: #ffffff;
   --color-secondary-bg: #fefefe;
+  --color-tertiary-bg: #fbfbfb;
   --color-primary-blue: #213f7d;
   --color-primary-blue-20: #213f7d33;
   --color-teal: #39cdcc;
   --color-secondary-font-color: #545f7d;
+  --color-secondary-font-color-06: #545f7d0f;
   --color-primary-border: #545f7d26;
   --color-placeholder-text-color: #545f7d99;
+  --color-green: #39cd62;
+  --color-green-06: #39cd620f;
+  --color-red: #e4033b;
+  --color-red-10: #e4033b1a;
+  --color-yellow: #e9b200;
+  --color-yellow-10: #e9b2001a;
+
+  /* Breakpoints */
   --breakpoint-xs: 390px;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
@@ -53,7 +65,7 @@
 }
 
 body {
-  font-family: var(--font-roboto);
+  font-family: var(--font-work-sans);
   color: var(--color-primary-blue);
 }
 
