@@ -1,50 +1,123 @@
-# Lendsqr dashboard
+# Lendsqr Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern admin dashboard for managing users and organizational data, built with React and TypeScript.
 
-Currently, two official plugins are available:
+![Dashboard Preview](https://i.ibb.co/4gS1BMK9/Screenshot-2025-02-22-at-15-05-18.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **User Management**
+  - View user list with pagination
+  - Detailed user profiles
+  - Status management (Active, Blacklisted, Pending)
+- **Responsive Design**
+  - Mobile-first approach
+  - Adaptive layout for all screen sizes
+  - Collapsible sidebar
+- **Authentication**
+  - Protected routes
+  - Role-based access control
+- **Data Visualization**
+  - Interactive tables with sorting/filtering
+  - Pagination and virtual scrolling
+- **UI Components**
+  - Customizable theme
+  - Reusable components library
+  - Accessible ARIA labels
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Built With
 
-- Configure the top-level `parserOptions` property like this:
+- [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [TanStack Table](https://tanstack.com/table/v8)
+- [React Router](https://reactrouter.com/)
+- [Lucide Icons](https://lucide.dev/)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/ddboy19912/lendsqr-admin-dashboard.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
+```bash
+npm install
 ```
+
+3. Start development server:
+
+```bash
+npm run dev
+```
+
+4. Open in browser:
+
+```bash
+http://localhost:5173
+```
+
+## Project Structure
+
+```
+src/
+├── components/       # Reusable components
+│   ├── layout/       # Layout components
+│   └── ui/           # shadcn/ui components
+├── hooks/            # Custom hooks
+├── pages/            # Page components
+├── styles/           # Global styles and mixins
+├── types/            # TypeScript definitions
+└── utils/            # Utility functions
+```
+
+## Documentation
+
+### Key Implementation Details
+
+- **Routing**  
+  Protected routes with lazy loading and code splitting
+
+  ```jsx
+  <Route
+    element={
+      <ProtectedRoute>
+        <DashboardLayout />
+      </ProtectedRoute>
+    }
+  >
+    <Route path="/admin/users" element={<UsersPage />} />
+  </Route>
+  ```
+
+- **Data Table**  
+  Virtualized table with dynamic columns
+
+  ```tsx
+  <DataTable
+    data={users}
+    columns={userColumns}
+    statusColumn={{
+      accessorKey: "meta.status",
+      configs: STATUS_CONFIGS,
+    }}
+  />
+  ```
+
+- **Responsive Design**  
+  Mobile-first approach with breakpoint mixins
+  ```scss
+  @include mobile {
+    padding: 0.5rem;
+  }
+  ```
+
+## Acknowledgements
+
+- [Lendsqr](https://lendsqr.com/) for design inspiration and task
+- [Vite React Template](https://vitejs.dev/guide/)
+- [shadcn/ui Documentation](https://ui.shadcn.com/docs)
