@@ -61,7 +61,11 @@ export const ContentTabs = ({
             <p className="text-secondary-font-color mt-2">
               The requested user information could not be loaded
             </p>
-            <Button variant="outline" className="mt-4">
+            <Button
+              onClick={() => window.location.reload()}
+              variant="outline"
+              className="mt-4"
+            >
               Retry
             </Button>
           </div>
