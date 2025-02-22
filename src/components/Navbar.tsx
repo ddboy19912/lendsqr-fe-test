@@ -16,7 +16,7 @@ const Navbar = () => {
     <header className="font-work-sans shadow-header fixed top-0 right-0 left-0 z-50 h-[100px] bg-white px-[30px]">
       <div className="mx-auto flex h-full items-center justify-between xl:max-w-[1350px]">
         <Link to="/">
-          <img className="h-[30px]" src={Logo} alt="logo" />
+          <img loading="eager" className="h-[30px]" src={Logo} alt="logo" />
         </Link>
         <div className="w-[400px]">
           <CustomInput
@@ -40,6 +40,7 @@ const Navbar = () => {
               <div className="size-12 animate-pulse rounded-full bg-gray-200" />
             ) : (
               <img
+                loading="lazy"
                 className="size-12 rounded-full bg-gray-200 object-cover"
                 src={user?.profileImage}
                 alt={user?.firstName ?? "User avatar"}

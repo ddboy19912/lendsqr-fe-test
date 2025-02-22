@@ -52,6 +52,7 @@ const LoginPage = () => {
             <img className="h-9 object-contain" src={Logo} alt="logo" />
           </div>
           <img
+            loading="lazy"
             className="mt-[139px]"
             src={LogoIllustration}
             alt="auth-illustration"
@@ -59,6 +60,7 @@ const LoginPage = () => {
         </div>
         <div className="chromebook:p-[100px] chromebook:items-start flex flex-col justify-center px-6 md:items-center">
           <img
+            loading="lazy"
             className="chromebook:hidden fixed top-10 left-[50%] h-6 translate-x-[-50%] object-contain"
             src={Logo}
             alt="logo"
