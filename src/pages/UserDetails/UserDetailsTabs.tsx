@@ -13,8 +13,12 @@ export const NavigationTabs = ({
   activeTab: TabValue;
   setActiveTab: (value: TabValue) => void;
 }) => (
-  <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabValue)}>
-    <TabsList className="grid h-full w-full grid-cols-6 px-9 py-0">
+  <Tabs
+    className="hide-scrollbar overflow-auto"
+    value={activeTab}
+    onValueChange={(v) => setActiveTab(v as TabValue)}
+  >
+    <TabsList className="lg::px-9 grid h-full w-[calc(100%+200px)] grid-cols-6 px-6 py-0 lg:w-full">
       {[
         { value: "general details", label: "General Details" },
         { value: "documents", label: "Documents" },
@@ -57,7 +61,11 @@ export const ContentTabs = ({
             <p className="text-secondary-font-color mt-2">
               The requested user information could not be loaded
             </p>
-            <Button variant="outline" className="mt-4">
+            <Button
+              onClick={() => window.location.reload()}
+              variant="outline"
+              className="mt-4"
+            >
               Retry
             </Button>
           </div>

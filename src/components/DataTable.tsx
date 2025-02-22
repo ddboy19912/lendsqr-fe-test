@@ -217,10 +217,13 @@ export default function DataTable<T extends { meta: { status: string } }>({
       <Card>
         {!isLoading ? (
           <div className="p-[30px] pb-0" ref={parentRef}>
-            <Table className="w-full">
+            <Table className="chromebook:w-full !w-[1000px]">
               <TableHeader className="bg-background sticky top-0 z-10">
                 {table.getHeaderGroups().map((headerGroup) => (
-                  <TableRow key={headerGroup.id} className="border-none">
+                  <TableRow
+                    key={headerGroup.id}
+                    className="min-w-[1000px] border-none"
+                  >
                     {headerGroup.headers.map((header) => (
                       <TableHead
                         key={header.id}
@@ -454,7 +457,7 @@ export default function DataTable<T extends { meta: { status: string } }>({
           </div>
         )}
       </Card>
-      <div className="flex items-center justify-between py-5">
+      <div className="flex flex-col items-center justify-between gap-5 py-5 lg:flex-row lg:gap-0">
         <span className="text-secondary-font-color flex items-center gap-2 text-sm">
           Showing{" "}
           <Select

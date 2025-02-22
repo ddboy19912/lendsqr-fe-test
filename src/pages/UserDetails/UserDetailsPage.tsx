@@ -7,6 +7,7 @@ import { formatAmount } from "@/lib/helpers";
 import { TabValue } from "@/types/Tabs";
 import { lazy, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { toast } from "sonner";
 
 const NavigationTabs = lazy(() =>
   import("./UserDetailsTabs").then((module) => ({
@@ -30,21 +31,27 @@ const UserDetailsPage = () => {
       <Link to="/admin/users" className="text-secondary-font-color">
         <Icon icon="back" size={30} className="mr-[13px]" /> Back to Users
       </Link>
-      <div className="mt-[26px] flex items-center justify-between">
+      <div className="chromebook:mt-[26px] mt-10 flex flex-col items-start justify-start gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-0">
         <h2 className="text-primary-blue font-medium">Users</h2>
-        <div className="flex gap-5">
-          <Button className="border-red text-red hover:bg-red cursor-pointer border bg-transparent px-4 py-[11.5px] text-sm font-semibold tracking-[0.1em] uppercase shadow-none transition-colors duration-200 hover:text-white">
+        <div className="flex gap-3 md:gap-5">
+          <Button
+            onClick={() => toast(`Blacklist ${userId}`)}
+            className="border-red text-red hover:bg-red cursor-pointer border bg-transparent px-4 py-[11.5px] text-xs font-semibold tracking-[0.1em] uppercase shadow-none transition-colors duration-200 hover:text-white md:text-sm"
+          >
             Blacklist User
           </Button>
-          <Button className="border-teal text-teal hover:bg-teal cursor-pointer border bg-transparent px-4 py-[11.5px] text-sm font-semibold tracking-[0.1em] uppercase shadow-none transition-colors duration-200 hover:text-white">
+          <Button
+            onClick={() => toast(`Activate ${userId}`)}
+            className="border-teal text-teal hover:bg-teal cursor-pointer border bg-transparent px-4 py-[11.5px] text-xs font-semibold tracking-[0.1em] uppercase shadow-none transition-colors duration-200 hover:text-white md:text-sm"
+          >
             Activate User
           </Button>
         </div>
       </div>
       <div className="mt-10">
         <Card>
-          <div className="flex items-center px-[30px] pt-[30px] pb-[51px]">
-            <div className="flex items-center gap-5">
+          <div className="flex flex-col items-center px-[30px] pt-[30px] pb-[51px] lg:flex-row">
+            <div className="flex flex-col items-center gap-5 lg:flex-row">
               {user?.personalInfo.profileImage ? (
                 <img
                   className="size-[100px] rounded-full object-cover"
@@ -61,15 +68,15 @@ const UserDetailsPage = () => {
                 />
               )}
               <div>
-                <h3 className="font-medium">
+                <h3 className="text-center font-medium lg:text-left">
                   {user?.personalInfo.firstName} {user?.personalInfo.lastName}
                 </h3>
-                <p className="leadnig-[1.2] text-secondary-font-color mt-2 text-sm font-normal">
+                <p className="leadnig-[1.2] text-secondary-font-color mt-2 text-center text-sm font-normal lg:text-left">
                   {user?.id}
                 </p>
               </div>
             </div>
-            <hr className="bg-secondary-font-color mx-[30px] h-[80px] w-[1px] opacity-20" />
+            <hr className="bg-secondary-font-color my-[30px] h-[1px] w-full opacity-20 lg:mx-[30px] lg:h-[80px] lg:w-[1px]" />
             <div className="flex flex-col items-center justify-center">
               <p className="!text-sm leading-[1.2] font-medium">User's Tier</p>
               <div className="space-x-1">
@@ -89,12 +96,12 @@ const UserDetailsPage = () => {
                   })}
               </div>
             </div>
-            <hr className="bg-secondary-font-color mx-[30px] h-[80px] w-[1px] opacity-20" />
+            <hr className="bg-secondary-font-color my-[30px] h-[1px] w-full opacity-20 lg:mx-[30px] lg:h-[80px] lg:w-[1px]" />
             <div className="flex flex-col justify-center">
-              <h3 className="leading-[1.1] font-medium">
+              <h3 className="text-center leading-[1.1] font-medium lg:text-left">
                 ₦{formatAmount(Number(user?.account.balance), { decimals: 2 })}
               </h3>
-              <p className="small-text mt-3">
+              <p className="small-text mt-3 text-center lg:text-left">
                 {user?.account.number}/{user?.account.bank}
               </p>
             </div>

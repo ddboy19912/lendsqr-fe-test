@@ -5,6 +5,7 @@ import {
   replaceHyphensWithSpaces,
 } from "@/lib/helpers";
 import { User } from "@/types/User";
+import React from "react";
 
 const GeneralDetails = ({ user }: { user: User }) => {
   console.log(user);
@@ -12,7 +13,7 @@ const GeneralDetails = ({ user }: { user: User }) => {
     <div>
       <div className="flex flex-col">
         <p className="font-medium">Personal Information</p>
-        <div className="mt-[30px] grid grid-cols-5 gap-[30px]">
+        <div className="chromebook:grid-cols-5 mt-[30px] grid grid-cols-2 gap-[30px] md:grid-cols-3 lg:grid-cols-5">
           <div className="flex flex-col">
             <p className="small-text text-secondary-font-color uppercase">
               Full Name
@@ -33,7 +34,7 @@ const GeneralDetails = ({ user }: { user: User }) => {
             <p className="small-text text-secondary-font-color uppercase">
               Email Address
             </p>
-            <p className="text-secondary-font-color mt-2 font-medium break-words">
+            <p className="text-secondary-font-color mt-2 font-medium break-words lowercase">
               {user.meta.email}
             </p>
           </div>
@@ -82,7 +83,7 @@ const GeneralDetails = ({ user }: { user: User }) => {
       <hr className="bg-primary-blue my-[30px] h-[1px] w-full opacity-10" />
       <div className="flex flex-col">
         <p className="font-medium">Education and Employment</p>
-        <div className="mt-[30px] grid grid-cols-4 gap-[30px]">
+        <div className="mt-[30px] grid grid-cols-2 gap-[30px] md:grid-cols-3 lg:grid-cols-4">
           <div className="flex flex-col">
             <p className="small-text text-secondary-font-color uppercase">
               Level of Education
@@ -119,7 +120,7 @@ const GeneralDetails = ({ user }: { user: User }) => {
             <p className="small-text text-secondary-font-color uppercase">
               Office Email
             </p>
-            <p className="text-secondary-font-color mt-2 font-medium break-words capitalize">
+            <p className="text-secondary-font-color mt-2 font-medium break-words lowercase">
               {user.meta.email}
             </p>
           </div>
@@ -144,7 +145,7 @@ const GeneralDetails = ({ user }: { user: User }) => {
       <hr className="bg-primary-blue my-[30px] h-[1px] w-full opacity-10" />
       <div className="flex flex-col">
         <p className="font-medium">Socials</p>
-        <div className="mt-[30px] grid grid-cols-4 gap-[30px]">
+        <div className="mt-[30px] grid grid-cols-2 gap-[30px] md:grid-cols-3 lg:grid-cols-4">
           <div className="flex flex-col">
             <p className="small-text text-secondary-font-color uppercase">
               Twitter
@@ -182,44 +183,46 @@ const GeneralDetails = ({ user }: { user: User }) => {
       <hr className="bg-primary-blue my-[30px] h-[1px] w-full opacity-10" />
       <div className="flex flex-col">
         <p className="font-medium">Guarantor</p>
-        {user.guarantors.map((guarantor) => (
-          <div
-            key={guarantor.name}
-            className="mt-[30px] grid grid-cols-4 gap-[30px]"
-          >
-            <div className="flex flex-col">
-              <p className="small-text text-secondary-font-color uppercase">
-                Full Name
-              </p>
-              <p className="text-secondary-font-color mt-2 font-medium break-words capitalize">
-                {guarantor.name}
-              </p>
+        {user.guarantors.map((guarantor, index) => (
+          <React.Fragment key={guarantor.name}>
+            <div className="mt-[30px] grid grid-cols-2 gap-[30px] md:grid-cols-3 lg:grid-cols-4">
+              <div className="flex flex-col">
+                <p className="small-text text-secondary-font-color uppercase">
+                  Full Name
+                </p>
+                <p className="text-secondary-font-color mt-2 font-medium break-words capitalize">
+                  {guarantor.name}
+                </p>
+              </div>
+              <div className="flex flex-col">
+                <p className="small-text text-secondary-font-color uppercase">
+                  Phone Number
+                </p>
+                <p className="text-secondary-font-color mt-2 font-medium break-words capitalize">
+                  {formatPhoneNumber(guarantor.phone)}
+                </p>
+              </div>
+              <div className="flex flex-col">
+                <p className="small-text text-secondary-font-color uppercase">
+                  Email Address
+                </p>
+                <p className="text-secondary-font-color mt-2 font-medium break-words lowercase">
+                  {guarantor.email}
+                </p>
+              </div>
+              <div className="flex flex-col">
+                <p className="small-text text-secondary-font-color uppercase">
+                  Relationship
+                </p>
+                <p className="text-secondary-font-color mt-2 font-medium break-words capitalize">
+                  {guarantor.relationship}
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col">
-              <p className="small-text text-secondary-font-color uppercase">
-                Phone Number
-              </p>
-              <p className="text-secondary-font-color mt-2 font-medium break-words capitalize">
-                {formatPhoneNumber(guarantor.phone)}
-              </p>
-            </div>
-            <div className="flex flex-col">
-              <p className="small-text text-secondary-font-color uppercase">
-                Email Address
-              </p>
-              <p className="text-secondary-font-color mt-2 font-medium break-words">
-                {guarantor.email}
-              </p>
-            </div>
-            <div className="flex flex-col">
-              <p className="small-text text-secondary-font-color uppercase">
-                Relationship
-              </p>
-              <p className="text-secondary-font-color mt-2 font-medium break-words capitalize">
-                {guarantor.relationship}
-              </p>
-            </div>
-          </div>
+            {index !== user.guarantors.length - 1 && (
+              <hr className="bg-primary-blue mt-[30px] h-[1px] w-full opacity-10" />
+            )}
+          </React.Fragment>
         ))}
       </div>
     </div>

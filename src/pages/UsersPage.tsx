@@ -17,6 +17,7 @@ import { type CellContext } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const UsersPage = () => {
   const { data: allUsers, isLoading } = useAllUsers();
@@ -40,12 +41,15 @@ const UsersPage = () => {
         header: "Organization",
         accessorKey: "organization",
         size: 200,
+        minWidth: 150,
       },
       {
         id: "username",
         accessorFn: (row: User) =>
           `${row.personalInfo.firstName} ${row.personalInfo.lastName}`,
         header: "Username",
+        size: 180,
+        minWidth: 140,
         meta: { type: "text" },
         cell: ({ row }: CellContext<User, unknown>) => {
           const firstName = row.original.personalInfo.firstName;
@@ -59,12 +63,14 @@ const UsersPage = () => {
         accessorKey: "meta.email",
         meta: { type: "text" },
         size: 220,
+        minWidth: 200,
         cell: ({ row }: CellContext<User, unknown>) => row.original.meta.email,
       },
       {
         header: "Phone Number",
         accessorKey: "meta.phone",
         size: 200,
+        minWidth: 160,
         cell: ({ row }: CellContext<User, unknown>) =>
           formatPhoneNumber(row.original.meta.phone),
       },
@@ -72,6 +78,7 @@ const UsersPage = () => {
         header: "Date Joined",
         accessorKey: "meta.joined",
         size: 180,
+        minWidth: 150,
         cell: ({ row }: CellContext<User, unknown>) =>
           format(new Date(row.original.meta.joined), "MMM dd, yyyy hh:mm a"),
         meta: { type: "date" },
@@ -80,6 +87,8 @@ const UsersPage = () => {
         id: "status",
         accessorFn: (row: User) => row.meta.status,
         header: "Status",
+        size: 120,
+        minWidth: 100,
         meta: { type: "status" },
         cell: StatusCell,
       },
@@ -113,7 +122,7 @@ const UsersPage = () => {
   return (
     <div>
       <h2 className="text-primary-blue font-medium">Users</h2>
-      <div className="mt-10 grid grid-cols-4 gap-[26px]">
+      <div className="chromebook:mt-10 mt-5 grid grid-cols-1 gap-[26px] md:grid-cols-2 xl:grid-cols-4">
         <StatCard
           icon={PeopleIllustration}
           label="Users"
@@ -169,7 +178,7 @@ const UsersPage = () => {
                   />
                 ),
                 label: "Blacklist user",
-                onClick: (row) => console.log("Blacklist user", row),
+                onClick: (row) => toast(`Blacklist user ${row.id}`),
               },
               {
                 id: 3,
@@ -182,7 +191,7 @@ const UsersPage = () => {
                   />
                 ),
                 label: "Activate user",
-                onClick: (row) => console.log("Activate user", row),
+                onClick: (row) => toast(`Activate user ${row.id}`),
               },
             ],
           }}
