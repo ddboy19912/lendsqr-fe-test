@@ -5,12 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "sonner";
 import App from "./App.tsx";
 import "./index.css";
-import { worker } from "./mocks/browser";
 import "./styles/index.scss";
-
-if (import.meta.env.MODE === "development") {
-  await worker.start();
-}
 
 const queryClient = new QueryClient();
 
@@ -20,7 +15,7 @@ setTimeout(() => {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <QueryClientProvider client={queryClient}>
         <Toaster richColors />
         <App />
