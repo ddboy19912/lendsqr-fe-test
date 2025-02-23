@@ -14,7 +14,7 @@ import { useAllUsers } from "@/hooks/useUsers";
 import { useUserStatus } from "@/hooks/useUserStatus";
 import { formatAmount, formatPhoneNumber } from "@/lib/helpers";
 import { User, UserStatus } from "@/types/User";
-import { type CellContext } from "@tanstack/react-table";
+import { ColumnDef, Row, type CellContext } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
@@ -103,7 +103,18 @@ const UsersPage = () => {
         minWidth: 100,
         meta: { type: "status" },
         cell: StatusCell,
-      },
+        filterFn: (
+          row: Row<User>,
+          columnId: string,
+          filterValue: unknown
+        ): boolean => {
+          const status = row.getValue<string>(columnId)?.toLowerCase();
+          if (typeof filterValue !== "string") return true;
+          return filterValue === "all"
+            ? true
+            : status === filterValue.toLowerCase();
+        },
+      } as ColumnDef<User>,
     ],
     []
   );

@@ -1,14 +1,12 @@
-const express = require("express");
-const serverless = require("serverless-http");
-const { faker } = require("@faker-js/faker");
+import { faker } from "@faker-js/faker";
+import cors from "cors";
+import express from "express";
+import serverless from "serverless-http";
 
-// Add CORS middleware
-const cors = require("cors");
 const app = express();
 
-// Configure CORS options
 const corsOptions = {
-  origin: "*", // Allow all origins
+  origin: "*",
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
@@ -17,7 +15,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Initialize with a fixed seed for consistent data
-faker.seed(123); // Any number for consistent results
+faker.seed(123);
 
 // Generate users once
 const allUsers = Array.from({ length: 1000 }, () => ({
@@ -139,4 +137,15 @@ router.get("/me", (req, res) => {
 
 app.use("/.netlify/functions/server", router);
 
-module.exports.handler = serverless(app);
+if (process.env.NETLIFY_DEV !== "true") {
+  const PORT = process.env.PORT || 4000;
+  app.listen(PORT, () => {
+    console.log(`Local server running on http://localhost:${PORT}`);
+    console.log(`Try:
+      curl http://localhost:${PORT}/api/users
+      curl http://localhost:${PORT}/api/me
+    `);
+  });
+}
+
+export const handler = serverless(app);
