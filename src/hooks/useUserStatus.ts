@@ -1,5 +1,5 @@
 import { updateUserStatus } from "@/api/users";
-import { User } from "@/types/User";
+import { User, UserStatus } from "@/types/User";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
@@ -7,7 +7,7 @@ export const useUserStatus = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ userId, status }: { userId: string; status: string }) =>
+    mutationFn: ({ userId, status }: { userId: string; status: UserStatus }) =>
       updateUserStatus(userId, status),
     onSuccess: (data: User, variables) => {
       queryClient.setQueryData(["users"], (old: User[] | undefined) =>

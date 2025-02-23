@@ -13,7 +13,7 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { useAllUsers } from "@/hooks/useUsers";
 import { useUserStatus } from "@/hooks/useUserStatus";
 import { formatAmount, formatPhoneNumber } from "@/lib/helpers";
-import { User } from "@/types/User";
+import { User, UserStatus } from "@/types/User";
 import { type CellContext } from "@tanstack/react-table";
 import { format } from "date-fns";
 import { useEffect, useMemo } from "react";
@@ -29,7 +29,7 @@ const UsersPage = () => {
 
   const { mutate } = useUserStatus();
 
-  const handleStatusChange = (userId: string, currentStatus: string) => {
+  const handleStatusChange = (userId: string, currentStatus: UserStatus) => {
     mutate(
       { userId, status: currentStatus },
       {
