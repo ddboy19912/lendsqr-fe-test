@@ -60,13 +60,19 @@ git clone https://github.com/ddboy19912/lendsqr-admin-dashboard.git
 npm install
 ```
 
-3. Start development servers (frontend + backend):
+3. Update environment variables:
+
+```bash
+VITE_API_BASE=
+```
+
+4. Start development servers (frontend + backend):
 
 ```bash
 npm run dev
 ```
 
-4. Access endpoints:
+5. Access endpoints:
 
 - Frontend: `http://localhost:5173`
 - API: `http://localhost:3000/api/users`

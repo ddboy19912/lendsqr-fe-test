@@ -1,9 +1,10 @@
 import { User, UserStatus } from "@/types/User";
 
 const API_URL =
-  import.meta.env.MODE === "development"
-    ? "http://localhost:4000/.netlify/functions/server"
-    : "/.netlify/functions/server";
+  import.meta.env.VITE_API_BASE ||
+  (import.meta.env.PROD
+    ? "/.netlify/functions/server"
+    : "http://localhost:4000/.netlify/functions/server");
 
 // Get basic user profile
 export const getBasicProfile = async (): Promise<{
