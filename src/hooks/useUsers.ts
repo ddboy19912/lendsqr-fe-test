@@ -17,14 +17,10 @@ export const useUserDetails = (userId: string) => {
   });
 };
 
-export const useAllUsers = (filters?: {
-  hasLoans?: boolean;
-  hasSavings?: boolean;
-}) => {
+export const useAllUsers = () => {
   return useQuery({
-    queryKey: ["users", filters],
-    queryFn: () => getAllUsers(filters),
+    queryKey: ["users"],
+    queryFn: getAllUsers,
     staleTime: 60_000,
-    select: (data) => data.data,
   });
 };

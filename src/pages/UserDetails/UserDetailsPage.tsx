@@ -1,6 +1,7 @@
 import { AvatarPlaceholder } from "@/assets";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { Button } from "@/components/ui/button";
 import { useUserDetails } from "@/hooks/useUsers";
 import { useUserStatus } from "@/hooks/useUserStatus";
@@ -23,9 +24,17 @@ const ContentTabs = lazy(() =>
 
 const UserDetailsPage = () => {
   const { userId } = useParams<{ userId: string }>();
-  const { data: user, refetch } = useUserDetails(userId ?? "");
+  const {
+    data: user,
+    refetch,
+    isError,
+    isLoading,
+  } = useUserDetails(userId ?? "");
+
   const [activeTab, setActiveTab] = useState<TabValue>("general details");
   const { mutate } = useUserStatus();
+
+  if (isLoading) return <LoadingSpinner />;
 
   const handleStatusChange = (status: "blacklisted" | "active") => {
     if (!userId) return;
@@ -124,7 +133,7 @@ const UserDetailsPage = () => {
         </Card>
 
         <Card className="mt-[30px] min-h-[910px] p-[30px] pb-[46px]">
-          <ContentTabs activeTab={activeTab} user={user} />
+          <ContentTabs isError={isError} activeTab={activeTab} user={user} />
         </Card>
       </div>
     </div>

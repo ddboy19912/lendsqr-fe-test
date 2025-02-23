@@ -38,9 +38,11 @@ export const NavigationTabs = ({
 export const ContentTabs = ({
   activeTab,
   user,
+  isError,
 }: {
   activeTab: TabValue;
   user?: User;
+  isError?: boolean;
 }) => (
   <Tabs value={activeTab}>
     {[
@@ -55,7 +57,9 @@ export const ContentTabs = ({
       { value: "apps and details", content: "Apps & Details Content" },
     ].map((tab) => (
       <TabsContent key={tab.value} value={tab.value}>
-        {tab.content || (
+        {!isError ? (
+          tab.content
+        ) : (
           <div className="p-6 pt-20 text-center text-red-500">
             <h3 className="text-xl font-semibold">User Data Not Found</h3>
             <p className="text-secondary-font-color mt-2">

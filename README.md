@@ -25,6 +25,17 @@ A modern admin dashboard for managing users and organizational data, built with 
   - Reusable components library
   - Accessible ARIA labels
 
+### Backend Services
+
+- **Netlify Functions**
+  - Serverless API endpoints
+  - Mock user data generation
+  - Status update endpoints
+- **Local Development Server**
+  - Hot-reload for API changes
+  - Integrated with frontend dev server
+  - CORS configuration
+
 ## Built With
 
 - [React](https://react.dev/) + [Vite](https://vitejs.dev/)
@@ -49,27 +60,23 @@ git clone https://github.com/ddboy19912/lendsqr-admin-dashboard.git
 npm install
 ```
 
-3. Start development server:
+3. Start development servers (frontend + backend):
 
 ```bash
 npm run dev
 ```
 
-4. Run Tests:
+4. Access endpoints:
 
-```bash
-npm test
-```
-
-5. Open in browser:
-
-```bash
-http://localhost:5173
-```
+- Frontend: `http://localhost:5173`
+- API: `http://localhost:3000/api/users`
 
 ## Project Structure
 
 ```
+netlify/
+└── functions/
+    └── server.js       # Netlify function entry point
 src/
 ├── __tests__/                # Main test directory
 │   └──components/           # Component integration tests
@@ -84,46 +91,67 @@ src/
 └── utils/            # Utility functions
 ```
 
-## Documentation
+## Development Scripts
 
-### Key Implementation Details
+```bash
+# Start frontend only
+npm run dev:frontend
 
-- **Routing**  
-  Protected routes with lazy loading and code splitting
+# Start backend server only
+npm run dev:server
 
-  ```jsx
-  <Route
-    element={
-      <ProtectedRoute>
-        <DashboardLayout />
-      </ProtectedRoute>
-    }
-  >
-    <Route path="/admin/users" element={<UsersPage />} />
-  </Route>
-  ```
+# Run both simultaneously
+npm run dev
 
-- **Data Table**  
-  Virtualized table with dynamic columns
+# Build for production
+npm run build
 
-  ```tsx
-  <DataTable
-    data={users}
-    columns={userColumns}
-    statusColumn={{
-      accessorKey: "meta.status",
-      configs: STATUS_CONFIGS,
-    }}
-  />
-  ```
+# Preview production build
+npm run preview
+```
 
-- **Responsive Design**  
-  Mobile-first approach with breakpoint mixins
-  ```scss
-  @include mobile {
-    padding: 0.5rem;
-  }
-  ```
+## Backend Implementation
+
+The server uses Express.js with Netlify Functions:
+
+```javascript
+// Mock data generation
+const allUsers = Array.from({ length: 1000 }, () => ({
+  id: faker.string.alpha(11),
+  meta: {
+    status: faker.helpers.arrayElement([
+      "active",
+      "inactive",
+      "blacklisted",
+      "pending",
+    ]),
+  },
+}));
+
+// API endpoints
+router.get("/users", (req, res) => {
+  res.json(allUsers.slice(0, req.query.count));
+});
+
+// Netlify function handler
+export const handler = serverless(app);
+```
+
+## Testing
+
+Run the full test suite including API mocks:
+
+```bash
+npm test
+```
+
+## Deployment
+
+The project is configured for Netlify deployment:
+
+- Automatic function detection in `netlify/functions`
+- CI/CD pipeline with branch deploys
+- Serverless function scaling
 
 ## Acknowledgements
 
